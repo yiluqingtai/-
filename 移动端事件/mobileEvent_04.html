@@ -1,0 +1,45 @@
+<!--
+    File:   mobileEvent04.html
+            移动端事件：基础应用案例
+            全面禁止事件的默认行为（包括下拉）
+
+    Author: yiluqingtai(1572236483@qq.com)
+            Created on 21/4/30
+-->
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, 
+        maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+        <title></title>
+        <style type="text/css">
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            .item {
+                width:200px;
+                height: 200px;
+                background: pink;
+                font-size: 30px;
+                text-align: center;
+                line-height: 200px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="item">item</div>
+    </body>
+    <script type="text/javascript">
+        window.onload=function() {
+            document.addEventListener('touchstart', function(ev) { /*禁止移动端所有默认行为，包括下拉*/
+                ev = ev || event; /*在chrome模拟器上不起作用，但在真机上有用*/
+                ev.preventDefault();
+            }, {passive: false});
+            /*经过实际测试，必须添加{passive:false}才能起效果*/
+        }
+    </script>
+</html>

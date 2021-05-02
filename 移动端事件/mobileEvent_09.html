@@ -1,0 +1,54 @@
+<!--
+    File:   mobileEvent09.html
+    移动端跳转方案
+    1、禁止全面事件会禁止a标签跳转，需要手动添加跳转事件
+    2、解决滑动误触的问题
+
+    Author: yiluqingtai(1572236483@qq.com)
+            Created on 21/4/30
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0,
+        minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <title></title>
+    </head>
+    <body>
+        <a href="http://www.atguigu.com">回娘家</a>
+        <a href="http://www.atguigu.com">回娘家</a>
+        <a href="http://www.atguigu.com">回娘家</a>
+        <a href="http://www.atguigu.com">回娘家</a>
+        <a href="http://www.atguigu.com">回娘家</a>
+        <a href="http://www.atguigu.com">回娘家</a>
+    </body>
+    <script type="text/javascript">
+        window.onload = function() {
+            document.addEventListener('touchstart', function(ev) { /*禁用了a标签的点击事件*/
+                ev = ev || event;
+                ev.preventDefault();
+            }, {passive: false});
+
+            /*解决误触*/
+            var aNodes = document.querySelectorAll('a');
+            for (var i = 0; i < aNodes.length; i++) {
+
+                aNodes[i].addEventListener('touchmove', function() {
+                    this.isMoved = false;
+                });
+
+                aNodes[i].addEventListener('touchmove', function() {
+                    this.isMoved = true;
+                });
+
+                aNodes[i].addEventListener('touchend', function() {
+                    if (!this.isMoved) {
+                        location.href = this.href;
+                    }
+                });
+            }
+        }
+    </script>
+</html>

@@ -1,0 +1,55 @@
+<!--
+    File:   mobileEvent06.html
+            自定义右键菜单
+
+    Author: yiluqingtai(1572236483@qq.com)
+            Created on 21/4/30
+-->
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, 
+        maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+        <title></title>
+        <style type="text/css">
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            #wrap {
+                position: absolute;
+                width: 200px;
+                height: 400px;
+                background: pink;
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="wrap">
+        </div>
+    </body>
+    <script type="text/javascript">
+        window.onload = function() {
+            document.oncontextmenu = function(ev) { /*右击显示方块*/
+                ev = ev||event;
+                var x = ev.clientX;
+                var y = ev.clientY;
+
+                var wrap = document.querySelector('#wrap');
+                wrap.style.display = 'block';
+                wrap.style.left = x + 'px';
+                wrap.style.top = y + 'px';
+                return false;
+            }
+
+            document.onclick = function() { /*左击方块消失*/
+                var wrap = document.querySelector('#wrap');
+                wrap.style.display="none";
+            }
+        }
+    </script>
+</html>
